@@ -1,23 +1,29 @@
 <template>
   <div class="tutorial-page">
+    <a href="/SlotTest">跳转到接收参数页面</a>
     <div class="item">
-      <text onclick="routeStyle" >item111111</text>
+      <text onclick="routeStyle">item111111</text>
     </div>
     <div class="item">
       <text>item2</text>
-        <text style="{{ styleText }}" onclick="changeStyleText">点击我修改文字颜色</text>
+      <text style="{{ styleText }}" onclick="changeStyleText">点击我修改文字颜色</text>
     </div>
-     <div class="tutorial-row" for="{{list}}">
+    <div class="tutorial-row" for="{{list}}">
       <text>{{$idx}}.{{$item.name}}</text>
     </div>
   </div>
 </template>
 <script>
 import router from '@system.router'
+var page = router.getState()
+console.log(`page index = ${page.index}`)
+console.log(`page name = ${page.name}`)
+
 export default {
+
   private: {
     list: [
-      {name: 'aa'},
+      { name: 'aa' },
       { name: 'bb' }
     ],
     className: 'text-blue',
@@ -27,13 +33,17 @@ export default {
     },
     styleText: 'color: blue'
   },
-  routeStyle () {
+  onInit() {
+    this.$page.setTitleBar({ text: 'StyleTest' })
+
+  },
+  routeStyle() {
     // 跳转到应用内的某个页面，router用法详见：文档->接口->页面路由
-    router.push ({
+    router.push({
       uri: '/Slot'
     })
   },
-  changeStyleText () {
+  changeStyleText() {
     console.info('被点击了2')
     this.styleText = 'color: green'
   },
@@ -44,7 +54,7 @@ export default {
 
 
 <style lang="less">
- @import './style.less';
+@import "./style.less";
 </style>
 
 

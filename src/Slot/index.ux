@@ -2,9 +2,9 @@
 
 <template>
   <div>
-  <a href="/">跳转首页</a>
-   <a href="/About">跳转到接收参数页面</a>
-  <a href="sms:10086">调起短信</a>
+    <a href="/">跳转首页</a>
+    <a href="/About">跳转到接收参数页面</a>
+    <a href="sms:10086">调起短信</a>
     <part1>
       <text>dynamic content form parent</text>
     </part1>
@@ -13,10 +13,17 @@
 
 <script>
 import router from '@system.router'
+import share from '@system.share'
+import prompt from '@system.prompt'
+import webview from '@system.webview'
+import notification from '@system.notification'
+
 export default {
+
   private: {
+
     list: [
-      {name: 'aa'},
+      { name: 'aa' },
       { name: 'bb' }
     ],
     className: 'text-blue',
@@ -26,8 +33,66 @@ export default {
     },
     styleText: 'color: blue'
   },
-  
-  changeStyleText () {
+  onInit() {
+    var page = router.getState()
+    console.log(`page index = ${page.index}`)
+    console.log(`page name = ${page.name}`)
+    console.log(`page path = ${page.path}`)
+    this.$page.setTitleBar({ text: 'Slot' })
+    notification.show({
+      contentTitle: 'title1',
+      clickAction: {
+        uri: '/About?index=1'
+      }
+    })
+    // share.share({
+    //   type: 'text/html',
+    //   data: '<b>bold</b>',
+    //   success: function (data) {
+    //     prompt.showToast({
+    //       message: 'handling success'
+    //     })
+    //     prompt.showDialog({
+    //       title: 'title',
+    //       message: 'message',
+    //       buttons: [
+    //         {
+    //           text: 'yes',
+    //           color: '#33dd44'
+    //         }, {
+    //           text: 'no',
+    //           color: '#33dd44'
+    //         }
+    //       ],
+    //       success: function (data) {
+    //         console.log('handling callback')
+    //         // webview.loadUrl({
+    //         //   url: 'http://www.baidu.com',
+    //         //   allowthirdpartycookies: true
+    //         // })
+    //         notification.show({
+    //           contentTitle: 'title',
+    //           clickAction: {
+    //             uri: '/index.html?index=1'
+    //           }
+    //         })
+
+    //       },
+    //       cancel: function () {
+    //         console.log('handling cancel')
+    //       },
+    //       fail: function (data, code) {
+    //         console.log(`handling fail, code = ${code}`)
+    //       }
+    //     })
+
+    //   },
+    //   fail: function (data, code) {
+    //     console.log(`handling fail, code = ${code}`)
+    //   }
+    // })
+  },
+  changeStyleText() {
     console.info('被点击了2')
     this.styleText = 'color: green'
   },
@@ -38,7 +103,7 @@ export default {
 
 
 <style lang="less">
- @import './style.less';
+@import "./style.less";
 </style>
 
 
