@@ -1,0 +1,45 @@
+<import name="part1" src="./part1.ux"></import>
+
+<template>
+  <div>
+  <a href="/">跳转首页</a>
+   <a href="/About">跳转到接收参数页面</a>
+  <a href="sms:10086">调起短信</a>
+    <part1>
+      <text>dynamic content form parent</text>
+    </part1>
+  </div>
+</template>
+
+<script>
+import router from '@system.router'
+export default {
+  private: {
+    list: [
+      {name: 'aa'},
+      { name: 'bb' }
+    ],
+    className: 'text-blue',
+    textColor: '#0faeff',
+    styleObj: {
+      color: 'red'
+    },
+    styleText: 'color: blue'
+  },
+  
+  changeStyleText () {
+    console.info('被点击了2')
+    this.styleText = 'color: green'
+  },
+
+}
+</script>
+
+
+
+<style lang="less">
+ @import './style.less';
+</style>
+
+
+ 

@@ -1,0 +1,51 @@
+<template>
+  <div class="tutorial-page">
+    <div class="item">
+      <text onclick="routeStyle" >item111111</text>
+    </div>
+    <div class="item">
+      <text>item2</text>
+        <text style="{{ styleText }}" onclick="changeStyleText">点击我修改文字颜色</text>
+    </div>
+     <div class="tutorial-row" for="{{list}}">
+      <text>{{$idx}}.{{$item.name}}</text>
+    </div>
+  </div>
+</template>
+<script>
+import router from '@system.router'
+export default {
+  private: {
+    list: [
+      {name: 'aa'},
+      { name: 'bb' }
+    ],
+    className: 'text-blue',
+    textColor: '#0faeff',
+    styleObj: {
+      color: 'red'
+    },
+    styleText: 'color: blue'
+  },
+  routeStyle () {
+    // 跳转到应用内的某个页面，router用法详见：文档->接口->页面路由
+    router.push ({
+      uri: '/Slot'
+    })
+  },
+  changeStyleText () {
+    console.info('被点击了2')
+    this.styleText = 'color: green'
+  },
+
+}
+</script>
+
+
+
+<style lang="less">
+ @import './style.less';
+</style>
+
+
+ 

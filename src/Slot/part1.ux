@@ -1,0 +1,9 @@
+<template>
+<div>
+ <div>wwqwqwqww</div>
+  <div>
+    <slot></slot>
+  </div>	
+</div>
+
+</template>
